@@ -8,7 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,6 +20,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static PresidentsList presidents;
 
     private RecyclerView recyclerView;
 
@@ -30,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        Gson gson = new Gson();
+        GsonBuilder builder = new GsonBuilder();
+        builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        Gson gson = builder.create();
 
         InputStream in = getResources().openRawResource(R.raw.presidents);
-        President presidents[] = gson.fromJson(new InputStreamReader(in), President[].class);
+        presidents = gson.fromJson(new InputStreamReader(in), PresidentsList.class);
 
         PresidentAdapter adapter = new PresidentAdapter(presidents);
         recyclerView.setAdapter(adapter);
