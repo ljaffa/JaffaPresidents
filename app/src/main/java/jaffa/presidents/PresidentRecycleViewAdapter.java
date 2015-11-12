@@ -2,6 +2,7 @@ package jaffa.presidents;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,11 @@ import android.view.ViewGroup;
 /**
  * Created by libby on 10/22/2015.
  */
-public class PresidentAdapter extends RecyclerView.Adapter<PresidentViewHolder>{
+public class PresidentRecycleViewAdapter extends RecyclerView.Adapter<PresidentViewHolder>{
 
-    private PresidentsList presidents;
+    private President[] presidents;
 
-    public PresidentAdapter(PresidentsList presidents){
-
+    public PresidentRecycleViewAdapter(President[] presidents){
         this.presidents = presidents;
     }
 
@@ -29,8 +29,8 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(final PresidentViewHolder holder, int position) {
-        holder.bind(presidents.get(position));
+    public void onBindViewHolder(final PresidentViewHolder holder, final int position) {
+        holder.bind(presidents[position]);
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
 
@@ -38,6 +38,8 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentViewHolder>{
             public void onClick(View v) {
                 Context context = holder.itemView.getContext();
                 Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("PRESIDENT", presidents);
+                intent.putExtra("POSITION", position);
                 context.startActivity(intent);
             }
         });
@@ -45,6 +47,6 @@ public class PresidentAdapter extends RecyclerView.Adapter<PresidentViewHolder>{
 
     @Override
     public int getItemCount() {
-        return presidents.size();
+        return presidents.length;
     }
 }

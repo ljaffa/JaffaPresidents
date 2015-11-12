@@ -1,29 +1,24 @@
 package jaffa.presidents;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.google.gson.FieldNamingPolicy;
-import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static PresidentsList presidents;
-
     private RecyclerView recyclerView;
+    private President[] presidents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = builder.create();
 
         InputStream in = getResources().openRawResource(R.raw.presidents);
-        presidents = gson.fromJson(new InputStreamReader(in), PresidentsList.class);
+        presidents = gson.fromJson(new InputStreamReader(in), President[].class);
 
-        PresidentAdapter adapter = new PresidentAdapter(presidents);
+
+        PresidentRecycleViewAdapter adapter = new PresidentRecycleViewAdapter(presidents); /*drawables*/
         recyclerView.setAdapter(adapter);
 
     }

@@ -4,16 +4,17 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * Created by libby on 10/22/2015.
  */
-public class President {
+public class President implements Serializable{
     private int number;
     private String president;
     private int birthYear;
-    private int deathYear;
+    private Integer deathYear;
     private String tookOffice;
     private String leftOffice;
     private String party;
@@ -26,11 +27,11 @@ public class President {
         return number;
     }
 
-    public int getBirthYear() {
+    public Integer getBirthYear() {
         return birthYear;
     }
 
-    public int getDeathYear() {
+    public Integer getDeathYear() {
         return deathYear;
     }
 
