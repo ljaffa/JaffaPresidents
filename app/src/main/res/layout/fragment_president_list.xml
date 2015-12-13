@@ -5,11 +5,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <fragment
-        android:name ="jaffa.presidents.PresidentListFragment"
+    <android.support.v7.widget.RecyclerView
+        android:id = "@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id = "@+id/listFragment"/>
+        android:layout_height= "match_parent"
+        />
 
 
 </RelativeLayout>

@@ -98,8 +98,18 @@ public class PresidentPagerAdapter extends PagerAdapter {
         President president = presidents[position];
         name.setText("Name: " + president.getPresident());
         number.setText("President #" + String.valueOf(president.getNumber()));
-        birthDeath.setText("Years Lived: " + String.valueOf(president.getBirthYear() + " - " + (String.valueOf(president.getDeathYear()))));
-        tookLeft.setText("Years in Office: " + president.getTookOffice() + " - " + (president.getLeftOffice()));
+        if ((String.valueOf(president.getDeathYear())) == (null)){
+            birthDeath.setText(String.valueOf(president.getBirthYear() + " - " + " still alive"));
+        }
+        else {
+            birthDeath.setText(String.valueOf(president.getBirthYear() + " - " + (String.valueOf(president.getDeathYear()))));
+        }
+        if ((president.getLeftOffice()) == (null)){
+            tookLeft.setText("Term: " + president.getTookOffice() + " - " + " present");
+        }
+        else {
+            tookLeft.setText("Term: " + president.getTookOffice() + " - " + (president.getLeftOffice()));
+        }
         party.setText("Party: " + president.getParty());
         image.setImageResource(pictures[position]);
         image.setScaleType(ImageView.ScaleType.FIT_XY);

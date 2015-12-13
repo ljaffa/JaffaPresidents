@@ -23,7 +23,7 @@ public class President implements Serializable{
         return president;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 

@@ -38,7 +38,7 @@ public class PresidentRecycleViewAdapter extends RecyclerView.Adapter<PresidentV
             public void onClick(View v) {
                 Context context = holder.itemView.getContext();
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("PRESIDENT", presidents);
+                intent.putExtra("PRESIDENTS6", presidents);
                 intent.putExtra("POSITION", position);
                 context.startActivity(intent);
             }
