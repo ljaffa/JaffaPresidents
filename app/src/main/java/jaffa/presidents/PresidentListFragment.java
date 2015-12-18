@@ -1,8 +1,9 @@
 package jaffa.presidents;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -61,7 +62,10 @@ import java.io.InputStreamReader;
                     R.drawable.harrystruman, R.drawable.dwightdeisenhower,R.drawable.johnfkennedy, R.drawable.lyndonbjohnson,
                     R.drawable.richardmnixon, R.drawable.geraldrford, R.drawable.jimmycarter, R.drawable.ronaldreagan,
                     R.drawable.georgebush, R.drawable.billclinton, R.drawable.georgewbush, R.drawable.barackobama};
-            PresidentRecycleViewAdapter adapter = new PresidentRecycleViewAdapter(presidents);
+
+           OnPresidentSelectedListener listener = (OnPresidentSelectedListener) getActivity();
+
+            PresidentRecycleViewAdapter adapter = new PresidentRecycleViewAdapter(presidents, listener);
             recyclerView.setAdapter(adapter);
         }
     }
